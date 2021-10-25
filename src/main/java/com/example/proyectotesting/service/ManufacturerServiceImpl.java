@@ -17,16 +17,17 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         this.repository = repository;
     }
 
+
     @Override
     public List<Manufacturer> findAll() {
-        return repository.findByManufacturerName("");
+        return repository.findAll();
     }
 
     @Override
     public Optional<Manufacturer> findOne(Long id) {
         if (id == null || id <= 0)
             return Optional.empty();
-        return repository.findAllByManufacturerId();
+        return repository.findById(id);
     }
 
     @Override
@@ -60,6 +61,16 @@ public class ManufacturerServiceImpl implements ManufacturerService {
             e.printStackTrace();
         }
         return false;
+
+
+    }
+
+    @Override
+    public List<Manufacturer> findManufacturerByCountry(String country) {
+        List<Manufacturer> result = new ArrayList<>();
+        if(country == null || country.isEmpty())
+            return result;
+        return repository.findManufacturerByCountry(country);
     }
 
 }
