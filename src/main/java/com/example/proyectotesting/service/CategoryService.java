@@ -13,7 +13,7 @@ public interface CategoryService {
     
     Category save(Category category);
 
-    Integer count();
+    long count();
 
     boolean deleteById(Long id);
 }
