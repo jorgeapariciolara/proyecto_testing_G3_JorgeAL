@@ -15,13 +15,13 @@ public interface ProductService {
 
     List<Product> findAllByPriceBetween(Double min, Double max);
 
-    List<Product> findAllByManufacturer(String manufacturer);
+    List<Product> findByManufacturer(String manufacturer);
 
     Double calculateShippingCost(Product product, Direction direction);
 
     Product save(Product product);
 
-    Integer count();
+    long count();
 
     boolean deleteById(Long id);
 }
