@@ -19,4 +19,6 @@ public interface ManufacturerService {
     Integer count();
 
     boolean deleteById(Long id);
+
+    List<Manufacturer> findManufacturerByCountry(String country);
 }
