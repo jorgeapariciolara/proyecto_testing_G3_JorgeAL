@@ -20,10 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-        List<Category> categoryes = new ArrayList<>();
-        categoryes.add(new Category("Categoria1", "Rojo"));
-        categoryes.add(new Category("Categoria2", "Azul"));
-        categoryes.add(new Category("Categoria3", "Morado"));
+
         return categoryRepository.findAll();
     }
 
@@ -32,14 +29,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (id == null || id <= 0)
             return Optional.empty();
 
-        try {
-            return categoryRepository.findById(id);
-        } catch (NullPointerException n) {
-            n.printStackTrace(System.out);
-            System.out.println("No se encontro el id con id: " + id);
-        }
-
-        return Optional.of(new Category());
+        return categoryRepository.findById(id);
 
     }
 
@@ -47,8 +37,6 @@ public class CategoryServiceImpl implements CategoryService {
     public Category save(Category category) {
         if (category == null)
             return null;
-        else if (category != null)
-            System.out.println("No se ha encontrado la categoria");
 
         return categoryRepository.save(category);
 
