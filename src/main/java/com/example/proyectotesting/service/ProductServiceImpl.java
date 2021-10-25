@@ -4,7 +4,6 @@ import com.example.proyectotesting.entities.Direction;
 import com.example.proyectotesting.entities.Product;
 import com.example.proyectotesting.repository.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,41 +30,45 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Product> findOne(Long id) {
         if (id == null || id <= 0)
             return Optional.empty();
+
         return repository.findById(id);
     }
 
     @Override
-    public List<Product> findAllByPriceBetween(Double min, Double max) {
+    public List<Product> findByPriceBetween(Double min, Double max) {
         List<Product> result = new ArrayList<>();
-        if(min == null || max == null)
+        if (min == null || max == null)
             return result;
 
-        if(min < 0 || max <= 0)
+        if (min < 0 || max <= 0)
             return result;
 
-        if(min >= max)
+        if (min >= max)
             return result;
 
-        return repository.findAllByPriceBetween(min, max);
+        return repository.findByPriceBetween(min, max);
+
     }
 
     @Override
     public List<Product> findByManufacturer(String manufacturer) {
         List<Product> result = new ArrayList<>();
-        if(manufacturer == null || manufacturer.isEmpty())
+        if(manufacturer == null || manufacturer.isEmpty() )
             return result;
+
         return repository.findByManufacturerName(manufacturer);
     }
 
     @Override
     public Double calculateShippingCost(Product product, Direction direction) {
-        double result = 2.99;
-        if(product==null || direction==null || direction.getCountry() == null)
-            return result;
 
+        if(product == null || direction == null || direction.getCountry() == null)
+            return 0d;
+
+        double result = 2.99;
         // pais
-        if(direction.getCountry().equalsIgnoreCase("Spain"))
-            result += 20; // 20€ mas de envio fuera d españa
+        if(!direction.getCountry().equalsIgnoreCase("Spain"))
+            result += 20; // 20 € de envío fuera de españa
 
         return result;
     }
@@ -74,8 +77,8 @@ public class ProductServiceImpl implements ProductService {
     public Product save(Product product) {
         if(product == null)
             return null;
-        return  repository.save(product);
 
+        return repository.save(product);
     }
 
     @Override
@@ -88,10 +91,10 @@ public class ProductServiceImpl implements ProductService {
         if (id == null || !repository.existsById(id))
             return false;
 
-        try {
+        try{
             repository.deleteById(id);
             return true;
-        }catch (Exception e) {
+        }catch(Exception e){
             e.printStackTrace();
         }
         return false;

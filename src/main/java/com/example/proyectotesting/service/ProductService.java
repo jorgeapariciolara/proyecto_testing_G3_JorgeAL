@@ -13,7 +13,7 @@ public interface ProductService {
 
     Optional<Product> findOne(Long id);
 
-    List<Product> findAllByPriceBetween(Double min, Double max);
+    List<Product> findByPriceBetween(Double min, Double max);
 
     List<Product> findByManufacturer(String manufacturer);
 
