@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Integer count() {
+    public Long count() {
         return null;
     }
 
