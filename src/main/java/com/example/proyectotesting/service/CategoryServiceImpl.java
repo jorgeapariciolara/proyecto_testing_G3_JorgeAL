@@ -23,6 +23,7 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categoryes = new ArrayList<>();
         categoryes.add(new Category("Categoria1", "Rojo"));
         categoryes.add(new Category("Categoria2", "Azul"));
+        categoryes.add(new Category("Categoria3", "Morado"));
         return categoryRepository.findAll();
     }
 
