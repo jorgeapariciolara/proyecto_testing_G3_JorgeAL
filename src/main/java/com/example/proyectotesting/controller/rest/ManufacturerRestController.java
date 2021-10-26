@@ -1,4 +1,4 @@
-ackage com.example.proyectotesting.controller.rest;
+package com.example.proyectotesting.controller.rest;
 
 import com.example.proyectotesting.entities.Manufacturer;
 import com.example.proyectotesting.service.ManufacturerService;
@@ -48,5 +48,14 @@ public class ManufacturerRestController {
         return ResponseEntity.ok(result);
     }
 
+
+    @DeleteMapping("/api/manufactures")
+    public ResponseEntity<Manufacturer> deleteAll(){
+
+        if(manufacturerService.deleteAll())
+            return ResponseEntity.noContent().build();
+        else
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    }
 
 }
