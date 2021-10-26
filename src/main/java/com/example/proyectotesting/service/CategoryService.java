@@ -10,7 +10,9 @@ public interface CategoryService {
     List<Category> findAll();
 
     Optional<Category> findOne(Long id);
-    
+
+    Optional<Category> findOne(String color);
+
     Category save(Category category);
 
     long count();

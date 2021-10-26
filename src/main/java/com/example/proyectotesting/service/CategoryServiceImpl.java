@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -20,7 +21,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-
         return categoryRepository.findAll();
     }
 
@@ -31,6 +31,14 @@ public class CategoryServiceImpl implements CategoryService {
 
         return categoryRepository.findById(id);
 
+    }
+
+    @Override
+    public Optional<Category> findOne(String color) {
+        if (color == null)
+            return Optional.empty();
+
+        return categoryRepository.findByColor(color);
     }
 
     @Override
