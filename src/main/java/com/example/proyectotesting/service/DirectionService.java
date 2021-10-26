@@ -14,7 +14,10 @@ public interface DirectionService {
     
     Direction save(Direction direction);
 
-    Integer count();
+    Long count();
 
     boolean deleteById(Long id);
+
+
+    boolean deleteAll();
 }
