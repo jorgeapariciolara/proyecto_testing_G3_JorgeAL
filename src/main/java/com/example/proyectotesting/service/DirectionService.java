@@ -11,7 +11,9 @@ public interface DirectionService {
     List<Direction> findAll();
 
     List<Direction> findByCityAndCountry(String city, String country);
-    
+
+    Optional<Direction> findOne(Long id);
+
     Direction save(Direction direction);
 
     Long count();

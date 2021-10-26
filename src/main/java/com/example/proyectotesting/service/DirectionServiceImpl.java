@@ -66,7 +66,7 @@ public class DirectionServiceImpl implements DirectionService{
 
         try {
             // directionrepo.exists()
-            Optional directionoptional = directionRepository.findById(id);
+            Optional<Direction> directionoptional = directionRepository.findById(id);
             if (directionoptional.isEmpty()) {
                 System.out.println("No result");
                 throw new IllegalArgumentException();
@@ -99,6 +99,6 @@ public class DirectionServiceImpl implements DirectionService{
         List<Direction> result = new ArrayList<>();
         if (city == null || country == null)
             return result;
-        return repository.findByCityAndCountry(city,country);
+        return directionRepository.findByCityAndCountry(city,country);
     }
 }
