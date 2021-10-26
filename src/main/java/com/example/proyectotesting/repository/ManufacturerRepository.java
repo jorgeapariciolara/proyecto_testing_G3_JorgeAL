@@ -13,5 +13,5 @@ public interface ManufacturerRepository extends JpaRepository<Manufacturer, Long
 
     List<Manufacturer> findByYear(Integer year);
 
-    List<Manufacturer> findManufacturerByCountry(String country);
+    List<Manufacturer> findManufacturerByDirectionCountry(String country);
 }
