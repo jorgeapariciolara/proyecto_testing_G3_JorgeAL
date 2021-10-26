@@ -31,4 +31,6 @@ Capa controlador
   * update()
   * deleteById()
   * deleteAll()
-* ManufacturerRestController
+* ManufacturerRestController --> Alicia
+* DirectionRestController --> María Ángeles
+* CategoryRestController --> David
