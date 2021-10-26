@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface DirectionRepository extends JpaRepository<Direction, Long>{
 
 
-    List<Direction> findAllByDirectionId(Long id);
+    List<Direction> findAllById(Long id);
 
     List<Direction> findByCityAndCountry(String city, String country);
 }
