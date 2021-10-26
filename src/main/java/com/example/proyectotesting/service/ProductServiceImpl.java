@@ -35,6 +35,11 @@ public class  ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
     public List<Product> findByPriceBetween(Double min, Double max) {
         List<Product> result = new ArrayList<>();
         if (min == null || max == null)

@@ -13,6 +13,8 @@ public interface ProductService {
 
     Optional<Product> findOne(Long id);
 
+    boolean existsById(Long id);
+
     List<Product> findByPriceBetween(Double min, Double max);
 
     List<Product> findByManufacturer(String manufacturer);
