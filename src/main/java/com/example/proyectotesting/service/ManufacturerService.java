@@ -1,6 +1,5 @@
 package com.example.proyectotesting.service;
 
-import com.example.proyectotesting.entities.Direction;
 import com.example.proyectotesting.entities.Manufacturer;
 
 import java.util.List;
@@ -16,7 +15,7 @@ public interface ManufacturerService {
 
     Manufacturer save(Manufacturer manufacturer);
 
-    Integer count();
+    long count();
 
     boolean deleteById(Long id);
 

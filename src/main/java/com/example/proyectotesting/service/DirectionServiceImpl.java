@@ -2,47 +2,31 @@ package com.example.proyectotesting.service;
 
 import com.example.proyectotesting.entities.Direction;
 import com.example.proyectotesting.repository.DirectionRepository;
-import org.apache.taglibs.standard.tag.common.core.NullAttributeException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-/**
- *
- */
 public class DirectionServiceImpl implements DirectionService{
 
-    //@Autowired
     DirectionRepository directionRepository;
 
-    public void DirectionServiceImpl(DirectionRepository directionRepository){
+    public DirectionServiceImpl(DirectionRepository directionRepository){
         this.directionRepository = directionRepository;
     }
-    //public DirectionServiceImpl() {}
-
-
+  
     @Override
-    /**
-     *
-     * @return
-     */
     public List<Direction> findAll() {
         List<Direction> answer = new ArrayList<Direction>();
         answer = directionRepository.findAll();
         if (answer.size() > 0)
             System.out.println("Empty Table");
-        return answer;}
+        return answer;
+    }
 
     @Override
-    /**
-     *
-     */
-    public Optional<Direction> findOne(Long id) {
+      public Optional<Direction> findOne(Long id) {
           try {
               Optional optionalanswer = directionRepository.findById(id);
               if (optionalanswer.isEmpty())
@@ -54,11 +38,7 @@ public class DirectionServiceImpl implements DirectionService{
               return Optional.empty();
           }
     }
-
     @Override
-    /**
-     *
-     */
     public Direction save(Direction direction) {
         try {
             if (direction != null) {
@@ -73,9 +53,6 @@ public class DirectionServiceImpl implements DirectionService{
         return null;
     }
     @Override
-    /**
-     *
-     */
     public Long count() {
 
         long answer =directionRepository.count();
@@ -85,9 +62,6 @@ public class DirectionServiceImpl implements DirectionService{
     }
 
     @Override
-    /**
-     *
-     */
     public boolean deleteById(Long id) {
 
         try {
@@ -108,9 +82,6 @@ public class DirectionServiceImpl implements DirectionService{
     }
 
     @Override
-    /**
-     *
-     */
     public boolean deleteAll() {
 
         try {
@@ -121,5 +92,13 @@ public class DirectionServiceImpl implements DirectionService{
             error.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public List<Direction> findByCityAndCountry(String city, String country) {
+        List<Direction> result = new ArrayList<>();
+        if (city == null || country == null)
+            return result;
+        return repository.findByCityAndCountry(city,country);
     }
 }

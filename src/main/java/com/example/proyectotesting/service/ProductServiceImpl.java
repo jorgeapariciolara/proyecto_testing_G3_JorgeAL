@@ -13,7 +13,7 @@ import java.util.Optional;
  * ProductService --> ProductRepository --> Base de datos
  */
 @Service
-public class ProductServiceImpl implements ProductService {
+public class  ProductServiceImpl implements ProductService {
 
     private ProductRepository repository; // dependencia
 

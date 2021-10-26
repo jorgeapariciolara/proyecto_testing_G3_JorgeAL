@@ -1,6 +1,5 @@
 package com.example.proyectotesting.service;
 
-import com.example.proyectotesting.entities.Direction;
 import com.example.proyectotesting.entities.Manufacturer;
 import com.example.proyectotesting.repository.ManufacturerRepository;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ManufacturerServiceImpl implements ManufacturerService{
+public class ManufacturerServiceImpl implements ManufacturerService {
 
     private ManufacturerRepository repository;
 
@@ -18,34 +17,52 @@ public class ManufacturerServiceImpl implements ManufacturerService{
         this.repository = repository;
     }
 
+
     @Override
     public List<Manufacturer> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Optional<Manufacturer> findOne(Long id) {
-        return Optional.empty();
+        if (id == null || id <= 0)
+            return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override
     public List<Manufacturer> findByYear(Integer year) {
-        return null;
+        List<Manufacturer> result = new ArrayList<>();
+        if (year == null || year <= 0)
+            return result;
+        return repository.findByYear(year);
     }
 
     @Override
     public Manufacturer save(Manufacturer manufacturer) {
-        return null;
+        if(manufacturer == null)
+            return null;
+        return repository.save(manufacturer);
     }
 
     @Override
-    public Integer count() {
-        return null;
+    public long count() {
+        return repository.count();
     }
 
     @Override
     public boolean deleteById(Long id) {
+        if (id == null || !repository.existsById(id))
+            return false;
+        try{
+            repository.deleteById(id);
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return false;
+
+
     }
 
     @Override
@@ -53,6 +70,7 @@ public class ManufacturerServiceImpl implements ManufacturerService{
         List<Manufacturer> result = new ArrayList<>();
         if(country == null || country.isEmpty())
             return result;
-         return repository.findManufacturerByCountry(country);
+        return repository.findManufacturerByCountry(country);
     }
+
 }

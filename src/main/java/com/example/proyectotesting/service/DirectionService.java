@@ -10,9 +10,7 @@ public interface DirectionService {
 
     List<Direction> findAll();
 
-    Optional<Direction> findOne(Long id);
-
-    // TODO - agregar método para filtrar por ciudad y país a la vez
+    List<Direction> findByCityAndCountry(String city, String country);
     
     Direction save(Direction direction);
 
