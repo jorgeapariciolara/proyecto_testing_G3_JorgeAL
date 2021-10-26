@@ -49,13 +49,4 @@ public class ManufacturerRestController {
     }
 
 
-    @DeleteMapping("/api/manufactures")
-    public ResponseEntity<Manufacturer> deleteAll(){
-
-        if(manufacturerService.deleteAll())
-            return ResponseEntity.noContent().build();
-        else
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
-    }
-
 }
