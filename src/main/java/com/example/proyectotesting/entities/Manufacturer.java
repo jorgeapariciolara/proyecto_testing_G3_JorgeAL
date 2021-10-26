@@ -1,5 +1,7 @@
 package com.example.proyectotesting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,7 +27,8 @@ public class Manufacturer implements Serializable {
 	
 	@Column(name="year")
 	private Integer year;
-	
+
+	@JsonIgnore
 	@OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
 	private List<Product> products = new ArrayList<Product>();
 	

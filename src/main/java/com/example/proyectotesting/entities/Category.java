@@ -1,5 +1,7 @@
 package com.example.proyectotesting.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +23,8 @@ public class Category implements Serializable{
 	
 	@Column(name="color")
 	private String color;
-	
+
+	@JsonIgnore
 	@ManyToMany(mappedBy="categories")
 	private List<Product> products = new ArrayList<>();
 	
