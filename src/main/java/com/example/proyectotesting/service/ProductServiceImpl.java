@@ -104,4 +104,15 @@ public class  ProductServiceImpl implements ProductService {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteAll() {
+        try{
+            repository.deleteAll();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

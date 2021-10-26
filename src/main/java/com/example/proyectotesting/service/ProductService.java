@@ -26,4 +26,6 @@ public interface ProductService {
     long count();
 
     boolean deleteById(Long id);
+
+    boolean deleteAll();
 }
