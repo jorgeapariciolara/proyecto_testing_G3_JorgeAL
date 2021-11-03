@@ -73,4 +73,14 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         return repository.findManufacturerByDirectionCountry(country);
     }
 
+    @Override
+    public boolean deleteAll() {
+        try{
+            repository.deleteAll();
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

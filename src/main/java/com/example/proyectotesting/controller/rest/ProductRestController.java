@@ -22,10 +22,9 @@ import java.util.Optional;
  * SmartPhone
  */
 @RestController // rest
-public class ProductRestController {
-
-    private ProductService productService; // dependencia
-
+public class   ProductRestController {
+    // dependencia
+    private ProductService productService;
     public ProductRestController(ProductService productService) {
         this.productService = productService;
     }
@@ -37,11 +36,10 @@ public class ProductRestController {
     }
 
     @GetMapping("/api/products/{id}")
-    public ResponseEntity<Product> findOne(@PathVariable Long id){
+    public ResponseEntity <Product> findOne (@PathVariable Long id) {
         Optional<Product> productOpt = productService.findOne(id);
-        return ResponseEntity.of(productOpt); // HTTP Status 200 si hay objeto en el Optional y 404 si no hay objeto en Optional
+        return ResponseEntity.of(productOpt); // HTTP Status 200 si hay objeto en el Optional y 404 si no hay objeto en el Optional
     }
-
 
     @PostMapping("/api/products") // crear nuevos productos
     public ResponseEntity<Product> create(@RequestBody Product product){

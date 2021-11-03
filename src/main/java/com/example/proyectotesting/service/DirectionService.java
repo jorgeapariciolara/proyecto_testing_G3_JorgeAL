@@ -14,12 +14,13 @@ public interface DirectionService {
 
     Optional<Direction> findOne(Long id);
 
+    boolean existsById(Long id);
+
     Direction save(Direction direction);
 
     Long count();
 
     boolean deleteById(Long id);
-
 
     boolean deleteAll();
 }

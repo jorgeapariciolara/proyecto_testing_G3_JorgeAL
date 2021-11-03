@@ -2,11 +2,9 @@ package com.example.proyectotesting.controller.rest;
 
 import com.example.proyectotesting.entities.Manufacturer;
 import com.example.proyectotesting.service.ManufacturerService;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 import java.util.Optional;

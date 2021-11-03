@@ -26,6 +26,11 @@ public class DirectionServiceImpl implements DirectionService{
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return directionRepository.existsById(id);
+    }
+
+    @Override
       public Optional<Direction> findOne(Long id) {
           try {
               Optional optionalanswer = directionRepository.findById(id);
