@@ -14,22 +14,32 @@ class CategoryRepositoryTest {
     @Autowired
     CategoryRepository repository;
 
-    @DisplayName("Buscar las categorías por el color")
+    @DisplayName("Buscar las categorías utilizando un color que está definido")
     @Test
-    void findByColorTest() {
+    void findByColorOkTest() {
         Optional<Category> optionalCategory1 = repository.findByColor("black");
         Optional<Category> optionalCategory2 = repository.findByColor("blue");
         Optional<Category> optionalCategory3 = repository.findByColor("white");
         Optional<Category> optionalCategory4 = repository.findByColor("brown");
         assertAll(
-                () -> assertNotNull(optionalCategory1),
+                () -> assertTrue(optionalCategory1.isPresent()),
                 () -> assertEquals("Libros", optionalCategory1.get().getName()),
-                () -> assertNotNull(optionalCategory2),
+                () -> assertTrue(optionalCategory2.isPresent()),
                 () -> assertEquals("Computación", optionalCategory2.get().getName()),
-                () -> assertNotNull(optionalCategory3),
+                () -> assertTrue(optionalCategory3.isPresent()),
                 () -> assertEquals("Hogar", optionalCategory3.get().getName()),
-                () -> assertNotNull(optionalCategory4),
+                () -> assertTrue(optionalCategory4.isPresent()),
                 () -> assertEquals("Moda", optionalCategory4.get().getName())
+        );
+    }
+    @DisplayName("Buscar las categorías utilizando un color que no está definido")
+    @Test
+    void findByColorNotContainsTest() {
+        Optional<Category> optionalCategory1 = repository.findByColor("amarillo");
+        Optional<Category> optionalCategory2 = repository.findByColor("verde");
+        assertAll(
+                () -> assertFalse(optionalCategory1.isPresent()),
+                () -> assertFalse(optionalCategory2.isPresent())
         );
     }
 }

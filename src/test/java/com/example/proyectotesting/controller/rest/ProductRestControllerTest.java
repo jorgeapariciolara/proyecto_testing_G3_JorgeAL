@@ -1,7 +1,6 @@
 package com.example.proyectotesting.controller.rest;
 
 import com.example.proyectotesting.entities.Product;
-import com.example.proyectotesting.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
-
-import java.net.URI;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,7 +63,6 @@ class ProductRestControllerTest {
         assertNotNull(responseProduct);
         assertNotNull(responseProduct.getId());
         assertEquals(product.getId(), responseProduct.getId());
-
     }
 
     @Test
@@ -218,7 +214,6 @@ class ProductRestControllerTest {
         assertEquals(404, response2.getStatusCodeValue());
         assertEquals(HttpStatus.NOT_FOUND, response2.getStatusCode());
         assertFalse(response2.hasBody());
-
     }
 
     @Test
