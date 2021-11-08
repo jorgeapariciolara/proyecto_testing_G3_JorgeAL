@@ -122,12 +122,6 @@ class ProductRestControllerTest {
     }
 
     @Test
-    void stringFormatTest(){
-        String result = String.format("Hola %s %s %s","Jorge","Aparicio","Lara");
-        System.out.println(result);
-    }
-
-    @Test
     void update() {
         Product product = createDemoProduct();
         String json = String.format("""
@@ -167,6 +161,45 @@ class ProductRestControllerTest {
     }
 
     @Test
+    void updateBadRequest() {
+        String json = """
+                {
+                    "id": null,
+                    "name": "Product creado desde JUnit",
+                    "description": "description example",
+                    "quantity": 6,
+                    "price": 4.99
+                }
+                """;
+
+        ResponseEntity<Product> response =
+                testRestTemplate.exchange(PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class);
+
+        assertEquals(400, response.getStatusCodeValue());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertFalse(response.hasBody());
+    }
+
+    @Test
+    void updateNotFoundRequest() {
+        String json = """
+                {
+                    "id": 999L,
+                    "name": "Product creado desde JUnit",
+                    "description": "description example",
+                    "quantity": 6,
+                    "price": 4.99
+                }
+                """;
+        ResponseEntity<Product> response =
+                testRestTemplate.exchange(PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class);
+        assertEquals(404, response.getStatusCodeValue());
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertFalse(response.hasBody());
+        // org.opentest4j.AssertionFailedError: Expected:404 Not Found   Actual:400 Bad Request
+    }
+
+    @Test
     void deleteById() {
         // Crear producto
         Product product = createDemoProduct();
@@ -188,33 +221,17 @@ class ProductRestControllerTest {
         assertFalse(response2.hasBody());
     }
 
+    /*
     @Test
-    void deleteById2() {
-        // Crear producto
-        Product product = createDemoProduct();
-        String url = PRODUCTS_URL + "/" + product.getId();
+    void deleteNoContentById() {
 
-        // GET y comprobar que sí existe
-        ResponseEntity<Product> response = testRestTemplate.getForEntity(url, Product.class);
-        assertEquals(200, response.getStatusCodeValue());
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(product.getId(), response.getBody().getId());
-
-        // ejecutar petición DELETE
-        response = testRestTemplate.exchange(url,
-                HttpMethod.DELETE,
-                createHttpRequest(""),
-                Product.class);
-
-        assertEquals(204, response.getStatusCodeValue());
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-
-        // GET y comprobar que no existe
-        ResponseEntity<Product> response2 = testRestTemplate.getForEntity(url, Product.class);
-        assertEquals(404, response2.getStatusCodeValue());
-        assertEquals(HttpStatus.NOT_FOUND, response2.getStatusCode());
-        assertFalse(response2.hasBody());
     }
+
+    @Test
+    void deleteNotFoundById() {
+
+    }
+    */
 
     @Test
     void deleteAll() {
