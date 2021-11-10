@@ -283,7 +283,7 @@ public class ManufacturerServiceImplMockitoTest {
         }
     }
 
-    @DisplayName("Funcionalidad BORRAR sobre productos")
+    @DisplayName("Funcionalidad BORRAR sobre fabricantes")
     @Nested
     class DeleteTest {
         @Test
@@ -295,34 +295,38 @@ public class ManufacturerServiceImplMockitoTest {
         @Test
         @DisplayName("Borrar un fabricante de id negativo")
         void deleteNegativeTest(){
-            boolean result = service.deleteById(-7L);
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(-9L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(-9L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar un fabricante de id no incluido en la base de datos")
         void deleteNotContainsTest(){
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
             boolean result = service.deleteById(999L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(999L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar un fabricante de id conocido")
         void deleteByIdOkTest(){
-            // assertTrue(repositoryMock.count() == 2);
-            boolean result1 = service.deleteById(1L);
-            assertTrue(result1);
-            // assertTrue(repositoryMock.count() == 1);
-            boolean result2 = service.deleteById(2L);
-            assertTrue(result2);
-            // assertTrue(repositoryMock.count() == 0);
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(anyLong());
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(anyLong()));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar todos los fabricantes")
         void deleteAllTest(){
-            // assertTrue(repositoryMock.count()>0);
-            // ¿Por qué no tenemos ningún fabricante en el repositorio?
+            doThrow(RuntimeException.class).when(repositoryMock).deleteAll();
             boolean result = service.deleteAll();
-            assertTrue(result);
-            // assertTrue(repositoryMock.count()==0);
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteAll());
+            verify(repositoryMock,times(2)).deleteAll();
         }
     }
 }

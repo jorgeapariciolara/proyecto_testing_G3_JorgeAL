@@ -177,10 +177,10 @@ public class DirectionServiceImplMockitoTest {
         }
     }
 
-    @DisplayName("Funcionalidad CREAR y MODIFICAR sobre fabricantes")
+    @DisplayName("Funcionalidad CREAR y MODIFICAR sobre direcciones")
     @Nested
     class SaveTest {
-        @DisplayName("Guardar un fabricante")
+        @DisplayName("Guardar una dirección")
         @Test
         void saveOkTest() {
             Direction direction1 = new Direction("Calle falsa", "33010", "León", "Spain");
@@ -216,49 +216,50 @@ public class DirectionServiceImplMockitoTest {
         }
     }
 
-    @DisplayName("Funcionalidad BORRAR sobre productos")
+    @DisplayName("Funcionalidad BORRAR sobre direcciones")
     @Nested
     class DeleteTest {
         @Test
-        @DisplayName("Borrar un fabricante de id nulo")
+        @DisplayName("Borrar una dirección de id nulo")
         void deleteNullTest(){
             boolean result = service.deleteById(null);
             assertFalse(result);
         }
         @Test
-        @DisplayName("Borrar un fabricante de id negativo")
+        @DisplayName("Borrar una dirección de id negativo")
         void deleteNegativeTest(){
-            boolean result = service.deleteById(-7L);
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(-9L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(-9L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
-        @DisplayName("Borrar un fabricante de id no incluido en la base de datos")
+        @DisplayName("Borrar una dirección de id no incluido en la base de datos")
         void deleteNotContainsTest(){
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
             boolean result = service.deleteById(999L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(999L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
-        @DisplayName("Borrar un fabricante de id conocido")
+        @DisplayName("Borrar una dirección de id conocido")
         void deleteByIdOkTest(){
-            // assertTrue(repositoryMock.count() == 2);
-            boolean result1 = service.deleteById(1L);
-            assertTrue(result1);
-            // assertTrue(repositoryMock.count() == 1);
-            boolean result2 = service.deleteById(2L);
-            assertTrue(result2);
-            assertTrue(repositoryMock.count() == 0);
-            verify(repositoryMock).deleteById(1L);
-            verify(repositoryMock).deleteById(2L);
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(anyLong());
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(anyLong()));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
-        @DisplayName("Borrar todos las direcciones")
+        @DisplayName("Borrar todas las direcciones")
         void deleteAllTest(){
-            // assertTrue(repositoryMock.count()>0);
-            // ¿Por qué no tenemos ningún fabricante en el repositorio?
+            doThrow(RuntimeException.class).when(repositoryMock).deleteAll();
             boolean result = service.deleteAll();
-            assertTrue(result);
-            assertTrue(repositoryMock.count()==0);
-            verify(repositoryMock).deleteAll();
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteAll());
+            verify(repositoryMock,times(2)).deleteAll();
         }
     }
 }

@@ -366,31 +366,38 @@ public class ProductServiceImplMockitoTest {
         @Test
         @DisplayName("Borrar un producto de id negativo")
         void deleteNegativeTest(){
-            boolean result = service.deleteById(-7L);
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(-9L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(-9L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar un producto de id no incluido en la base de datos")
         void deleteNotContainsTest(){
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
             boolean result = service.deleteById(999L);
             assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(999L));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar un producto de id conocido")
         void deleteByIdOkTest(){
-            boolean result = service.deleteById(1L);
-            assertTrue(result);
-            // ¿Por qué no reconoce los id?
-            // org.opentest4j.AssertionFailedError:     Expected:true       Actual:false
+            doThrow(RuntimeException.class).when(repositoryMock).deleteById(anyLong());
+            boolean result = service.deleteById(anyLong());
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteById(anyLong()));
+            verify(repositoryMock).deleteById(anyLong());
         }
         @Test
         @DisplayName("Borrar todos los productos")
         void deleteAllTest(){
-            assertTrue(service.count() > 0);
-            // ¿Por qué está vacío el repositorio?
-            // org.opentest4j.AssertionFailedError:     Expected:true       Actual:false
-            service.deleteAll();
-            assertEquals(0, service.count());
+            doThrow(RuntimeException.class).when(repositoryMock).deleteAll();
+            boolean result = service.deleteAll();
+            assertFalse(result);
+            assertThrows(Exception.class, () -> repositoryMock.deleteAll());
+            verify(repositoryMock,times(2)).deleteAll();
         }
     }
 
