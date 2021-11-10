@@ -12,6 +12,7 @@ import org.springframework.http.*;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doThrow;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ProductRestControllerTest {
@@ -194,9 +195,11 @@ class ProductRestControllerTest {
         ResponseEntity<Product> response =
                 testRestTemplate.exchange(PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class);
         assertEquals(404, response.getStatusCodeValue());
+                // org.opentest4j.AssertionFailedError:
+                //      Expected:404 Not Found
+                //      Actual:400 Bad Request
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertFalse(response.hasBody());
-        // org.opentest4j.AssertionFailedError: Expected:404 Not Found   Actual:400 Bad Request
     }
 
     @Test

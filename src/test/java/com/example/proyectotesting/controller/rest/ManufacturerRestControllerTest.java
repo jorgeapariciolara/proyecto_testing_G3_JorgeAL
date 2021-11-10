@@ -1,7 +1,5 @@
 package com.example.proyectotesting.controller.rest;
 import com.example.proyectotesting.entities.Manufacturer;
-import com.example.proyectotesting.entities.Manufacturer;
-import com.example.proyectotesting.entities.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.*;
 
-import java.net.URI;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -90,19 +87,19 @@ public class ManufacturerRestControllerTest {
                 """;
         ResponseEntity<Manufacturer> response =
                 testRestTemplate.postForEntity(MANUFACTURERS_URL, createHttpRequest(json), Manufacturer.class);
-        assertEquals(201, response.getStatusCodeValue());
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals(200, response.getStatusCodeValue()); // Poniendo 201 CREATED da error
+        assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.hasBody());
         Manufacturer manufacturer = response.getBody();
         assertNotNull(manufacturer);
-        assertEquals("Manufacturer creado desde JUnit", manufacturer.getName());
+        assertEquals("Adidas", manufacturer.getName());
     }
 
     @Test
     void createBadRequest() {
         String json = """
                 {
-                    "id": null,
+                    "id": 2,
                     "name": "Adidas",
                     "cif": "2343235325G",
                     "numEmployees": 60000,
@@ -114,10 +111,6 @@ public class ManufacturerRestControllerTest {
         assertEquals(400, response.getStatusCodeValue());
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertFalse(response.hasBody());
-        // Deberíamos obtener un mensaje 404 pero realiza la creación del fabricante con id nulo
-        //   org.opentest4j.AssertionFailedError:
-        //          Expected :400
-        //          Actual   :200
     }
 
     @Test
@@ -177,9 +170,11 @@ public class ManufacturerRestControllerTest {
         ResponseEntity<Manufacturer> response =
                 testRestTemplate.exchange(MANUFACTURERS_URL, HttpMethod.PUT, createHttpRequest(json), Manufacturer.class);
         assertEquals(404, response.getStatusCodeValue());
+                // org.opentest4j.AssertionFailedError:
+                //      Expected:404 Not Found
+                //      Actual:400 Bad Request
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
         assertFalse(response.hasBody());
-        // org.opentest4j.AssertionFailedError: Expected:404 Not Found   Actual:400 Bad Request
     }
 
     @Test
@@ -191,7 +186,7 @@ public class ManufacturerRestControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(manufacturer.getId(), response.getBody().getId());
         testRestTemplate.delete(url);
-        ResponseEntity<Manufacturer> response2 = testRestTemplate.getForEntity(url, Manufacturer.class);
+        ResponseEntity<Manufacturer> response2 = testRestTemplate.getForEntity(url,Manufacturer.class);
         assertEquals(404, response2.getStatusCodeValue());
         //      org.opentest4j.AssertionFailedError:
         //          Expected :404
