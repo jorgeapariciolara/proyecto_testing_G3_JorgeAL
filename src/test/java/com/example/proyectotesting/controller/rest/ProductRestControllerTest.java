@@ -183,6 +183,7 @@ class ProductRestControllerTest {
 
     @Test
     void updateNotFoundRequest() {
+
         String json = """
                 {
                     "id": 999L,
@@ -192,14 +193,16 @@ class ProductRestControllerTest {
                     "price": 4.99
                 }
                 """;
-        ResponseEntity<Product> response =
-                testRestTemplate.exchange(PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class);
-        assertEquals(404, response.getStatusCodeValue());
+
+        assertEquals(404, testRestTemplate.exchange(
+                PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class).getStatusCodeValue());
                 // org.opentest4j.AssertionFailedError:
                 //      Expected:404 Not Found
                 //      Actual:400 Bad Request
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertFalse(response.hasBody());
+        assertEquals(HttpStatus.NOT_FOUND, testRestTemplate.exchange(
+                PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class).getStatusCode());
+        assertFalse(testRestTemplate.exchange(
+                PRODUCTS_URL, HttpMethod.PUT, createHttpRequest(json), Product.class).hasBody());
     }
 
     @Test
