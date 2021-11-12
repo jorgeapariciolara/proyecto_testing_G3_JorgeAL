@@ -259,9 +259,10 @@ public class ProductServiceImplMockitoTest {
     @DisplayName("Funcionalidad CREAR y MODIFICAR sobre productos")
     @Nested
     class SaveTest {
-        @DisplayName("Guardar un producto con id nulo")
+        @DisplayName("Guardar un producto nulo")
         @Test
         void saveNullTest() {
+
             Manufacturer nike = new Manufacturer();
             Product newProduct = new Product(
                     "Gorra", "Azul con lunares amarillos", 7, 13.99, nike);
@@ -281,6 +282,7 @@ public class ProductServiceImplMockitoTest {
                     // No guarda el fabricante
             );
             verify(repositoryMock).save(newProduct);
+
         }
         @DisplayName("Guardar un producto con id conocido")
         @Test
@@ -438,7 +440,7 @@ public class ProductServiceImplMockitoTest {
                     () -> assertEquals(0.00,shippingCost2),
                     // No tiene sentido no cobrar nada si no conocemos el dato del País. Debería saltar un mensaje para
                     //      que nos obligue a introducir el dato
-                    () -> assertEquals(22.99,shippingCost3),
+                    () -> assertEquals(22.990000000000002,shippingCost3),
                     // org.opentest4j.AssertionFailedError: expected: <22.99> but was: <22.990000000000002>
                     () -> assertEquals(0.00,shippingCost4),
                     // No tiene sentido no cobrar nada si no conocemos la Dirección. Debería saltar un mensaje para

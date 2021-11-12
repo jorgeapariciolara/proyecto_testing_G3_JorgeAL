@@ -26,30 +26,18 @@
 	<developers>
 		<developer>
 			<name>alansastre</name>
-			<email>alan@example.com</email>
+			<email>alan@alansastre.co</email>
 		</developer>
 	</developers>
 	<contributors>
 		<contributor>
-			<name>jorge</name>
-			<email>user1@example.com</email>
-		</contributor>
-		<contributor>
-			<name>gonzalo</name>
-			<email>user2@example.com</email>
-		</contributor>
-		<contributor>
-			<name>miguel</name>
-			<email>user3@example.com</email>
-		</contributor>
-		<contributor>
-			<name>francisco</name>
-			<email>user4@example.com</email>
+			<name>jorgeaparicio</name>
+			<email>jorgeaparicio79@gmail.com</email>
 		</contributor>
 	</contributors>
 
 	<organization>
-		<name>TESTING_JAVA_G3</name>
+		<name>JORGE APARICIO LARA</name>
 		<url>https://example.com</url>
 	</organization>
 
