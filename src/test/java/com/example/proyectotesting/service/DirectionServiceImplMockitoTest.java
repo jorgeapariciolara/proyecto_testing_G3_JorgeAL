@@ -70,7 +70,11 @@ public class DirectionServiceImplMockitoTest {
         @Test
         void findOneOkTest() {
             Direction direction1 = new Direction("Calle Falsa", "33010", "León", "Spain");
-            Direction direction2 = new Direction("Calle Verdadera", "11322", "Madrid", "Spain");
+            Direction direction2 = new Direction();
+            direction2.setStreet("Calle Verdadera");
+            direction2.setPostalCode("11322");
+            direction2.setCity("Madrid");
+            direction2.setCountry("Spain");
             Direction direction3 = new Direction("True Street", null, null, "France");
             Direction direction4 = new Direction("Calle Mercado", "89534", "Rabat", "Morocco");
             Direction direction5 = new Direction("Rue Olalá", "02698", "París", "France");
@@ -184,7 +188,11 @@ public class DirectionServiceImplMockitoTest {
         @Test
         void saveOkTest() {
             Direction direction1 = new Direction("Calle falsa", "33010", "León", "Spain");
-            Direction direction2 = new Direction("Calle verdadera", "11322", "Madrid", "Spain");
+            Direction direction2 = new Direction();
+            direction2.setStreet("Calle verdadera");
+            direction2.setPostalCode("11322");
+            direction2.setCity("Madrid");
+            direction2.setCountry("Spain");
             when(repositoryMock.save(direction1)).thenReturn(direction1);
             when(repositoryMock.save(direction2)).thenReturn(direction2);
             Direction directionOne = service.save(direction1);

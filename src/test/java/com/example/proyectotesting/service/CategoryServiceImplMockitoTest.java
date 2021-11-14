@@ -54,7 +54,9 @@ public class CategoryServiceImplMockitoTest {
             Category category1 = new Category("Libros", "black");
             Category category2 = new Category("Computación", "blue");
             Category category3 = new Category("Hogar", "white");
-            Category category4 = new Category("Moda", "brown");
+            Category category4 = new Category();
+            category4.setName("Moda");
+            category4.setColor("brown");
             List<Category> categories = Arrays.asList(category1, category2, category3, category4);
             when(repositoryMock.findAll()).thenReturn(categories);
             List<Category> result = service.findAll();
@@ -67,7 +69,9 @@ public class CategoryServiceImplMockitoTest {
         @DisplayName("OPTIONAL - Buscar una categoría con un id conocido")
         @Test
         void findOneOkTest() {
-            Category category1 = new Category("Libros", "black");
+            Category category1 = new Category();
+            category1.setName("Libros");
+            category1.setColor("black");
             Category category2 = new Category("Computación", "blue");
             Category category3 = new Category("Hogar", "white");
             Category category4 = new Category("Moda", "brown");
@@ -121,18 +125,7 @@ public class CategoryServiceImplMockitoTest {
             );
             verifyNoInteractions(repositoryMock);
         }
-        /*
-        @DisplayName("OPTIONAL - Buscar una categoría con un id nulo")
-        @Test
-        void findNullTest() {
-            when(repositoryMock.findById(anyLong())).thenThrow(IllegalArgumentException.class);
-            Optional<Category> categoryOpt = service.findOne(null);
-            assertAll(
-                    () -> assertTrue(categoryOpt.isEmpty())
-            );
-            verifyNoInteractions(repositoryMock);
-        }
-        */
+
         @DisplayName("OPTIONAL - Buscar una categoría con un id que no existe en la base de datos")
         @Test
         void findNotContainsTest() {
@@ -152,7 +145,9 @@ public class CategoryServiceImplMockitoTest {
         void findByColorTest() {
             Category category1 = new Category("Libros", "black");
             Category category2 = new Category("Computación", "blue");
-            Category category3 = new Category("Hogar", "white");
+            Category category3 = new Category();
+            category3.setName("Hogar");
+            category3.setColor("white");
             Category category4 = new Category("Moda", "brown");
             when(repositoryMock.findByColor("black")).thenReturn(Optional.of(category1));
             when(repositoryMock.findByColor("blue")).thenReturn(Optional.of(category2));
@@ -206,7 +201,9 @@ public class CategoryServiceImplMockitoTest {
         @Test
         void saveOkTest() {
             Category category1 = new Category("Libros", "black");
-            Category category2 = new Category("Computación", "blue");
+            Category category2 = new Category();
+            category2.setName("Computación");
+            category2.setColor("blue");
             Category category3 = new Category("Hogar", "white");
             Category category4 = new Category("Moda", "brown");
             when(repositoryMock.save(category1)).thenReturn(category1);
