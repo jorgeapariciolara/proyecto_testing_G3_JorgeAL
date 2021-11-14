@@ -246,6 +246,7 @@
 						<goals>
 							<goal>check</goal>
 						</goals>
+						<!--
 						<configuration>
 							<rules>
 								<rule>
@@ -260,6 +261,7 @@
 								</rule>
 							</rules>
 						</configuration>
+						-->
 					</execution>
 				</executions>
 			</plugin>
