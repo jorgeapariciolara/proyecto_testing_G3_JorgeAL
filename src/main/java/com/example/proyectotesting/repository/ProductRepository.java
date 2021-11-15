@@ -11,10 +11,12 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
 	List<Product> findAllByManufacturerId(Long id);
-	
+
 	List<Product> findAllByManufacturerIdOrManufacturerIdIsNull(Long id);
-	
+
 	List<Product> findAllByManufacturerIdIsNull();
+
+	List<Product> findAllByManufacturerIdNotIn(List<Long> ids);
 
 	List<Product> findByManufacturerName(String name);
 
