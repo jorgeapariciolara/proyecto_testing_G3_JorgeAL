@@ -1,65 +1,69 @@
 package com.example.proyectotesting.patterns.behavioral.observer;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+class WeatherTest {
 
-public class WeatherTest {
+    Weather weather;
+    WeatherObserver weatherObserverphone;
+    WeatherObserver weatherObservercomputer;
 
     @BeforeEach
     void setUp() {
-        System.out.println("Iniciando test de Weather");
+        weather = new Weather();
+        weatherObserverphone = new SmartPhone();
+        weatherObservercomputer = new Computer();
     }
 
-    @AfterEach
-    void tearDown() {
-        System.out.println("Finalizando test de Weather");
-    }
-
-    @DisplayName("Comprobando que se añade un observer ")
     @Test
-    void addObserverTest(){
-        WeatherObserver obs = new Computer();
-        Weather weather = new Weather();
-        weather.addObserver(obs);
-        assertNotNull(weather);
+    @DisplayName("Añadir observer a la lista")
+    void addObserver() {
+
+        try {
+            weather.addObserver(weatherObserverphone);
+            weather.removeObserver(weatherObserverphone);
+            assertTrue(true);
+        } catch (Exception error) {
+            error.printStackTrace();
+            System.out.println("Error adding Observer");
+            assertTrue(false);
+        }
     }
 
-    @DisplayName("Comprobando que se borra el observer")
     @Test
-    void removeObserverTest(){
-        List<WeatherObserver> observers = new ArrayList<>();
-        WeatherObserver obs = new Computer();
-        Weather weather = new Weather();
-        weather.addObserver(obs);
-        assertNotEquals(1, observers.size());
-        weather.removeObserver(obs);
+    @DisplayName("Eliminar observer de la lista")
+    void removeObserver() {
+
+        try {
+            weather.addObserver(weatherObservercomputer);
+            weather.removeObserver(weatherObservercomputer);
+            assertTrue(true);
+        } catch (Exception error) {
+            error.printStackTrace();
+            System.out.println("Error removing Observer");
+            assertTrue(false);
+        }
     }
 
-    @DisplayName("Comprobando que se cambia el tiempo")
     @Test
-    void changeWeatherTest(){
-        Weather aemet = new Weather();
-        WeatherObserver computer = new Computer();
-        aemet.addObserver(computer);
-        aemet.addObserver(new SmartPhone());
-        aemet.changeWeather(WeatherType.CLOUDY);
-        aemet.changeWeather(WeatherType.RAINY);
-        aemet.changeWeather(WeatherType.SUNNY);
-        aemet.removeObserver(computer);
-        aemet.changeWeather(WeatherType.SUNNY);
+    @DisplayName("Cambliar el clima")
+    void changeWeather() {
+        weather.addObserver(weatherObservercomputer);
+        weather.addObserver(weatherObserverphone);
+
+        try {
+            weather.changeWeather(WeatherType.SUNNY);
+            weather.changeWeather(WeatherType.CLOUDY);
+            weather.changeWeather(WeatherType.RAINY);
+            assertTrue(true);
+        } catch (Exception error) {
+            error.printStackTrace();
+            System.out.println("Error changing weather");
+            assertTrue(false);
+        }
     }
-
-
-
-
-
-
 }
