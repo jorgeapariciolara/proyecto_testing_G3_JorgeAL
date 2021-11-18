@@ -11,25 +11,56 @@
 	<groupId>com.example</groupId>
 	<artifactId>proyecto-testing-G3-JorgeAL</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PROYECTO TESTING JAVA</name>
-	<description>Proyecto con JUnit para el estudio de Apache Maven</description>
+	<name>proyecto-testing-G3-JorgeAL</name>
+	<description>Proyecto final curso</description>
 	<url>https://www.awesomeapp.org/</url>
+
 	<developers>
 		<developer>
-			<name>alansastre</name>
-			<email>alan@alansastre.co</email>
-		</developer>
-	</developers>
-	<contributors>
-		<contributor>
 			<name>jorgeaparicio</name>
 			<email>jorgeaparicio79@gmail.com</email>
+		</developer>
+	</developers>
+
+	<contributors>
+		<contributor>
+			<name>alansastre</name>
+			<email>alan@alansastre.co</email>
+		</contributor>
+		<contributor>
+			<name>Gonzalo</name>
+		</contributor>
+		<contributor>
+			<name>Alicia</name>
+		</contributor>
+		<contributor>
+			<name>Ismael</name>
+		</contributor>
+		<contributor>
+			<name>David</name>
+		</contributor>
+		<contributor>
+			<name>Karim</name>
+		</contributor>
+		<contributor>
+			<name>Ioan</name>
+		</contributor>
+		<contributor>
+			<name>Mª de los Ángeles</name>
+		</contributor>
+		<contributor>
+			<name>Miguel Ángel</name>
+		</contributor>
+		<contributor>
+			<name>Francisco</name>
 		</contributor>
 	</contributors>
+
 	<organization>
-		<name>JORGE APARICIO LARA</name>
+		<name>FUNDACIÓN ADECCO - UST</name>
 		<url>https://example.com</url>
 	</organization>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
@@ -40,18 +71,16 @@
 		<sonar.java.checkstyle.reportPaths>target/checkstyle-result.xml</sonar.java.checkstyle.reportPaths>
 		<sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
 		<sonar.java.spotbugs.reportPaths>target/spotbugsXml.xml</sonar.java.spotbugs.reportPaths>
-		<sonar.organization>jorgeaparicio</sonar.organization>
+		<sonar.organization>jorgeapariciolara</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 
 	<dependencies>
-		<!-- JSP -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<version>9.0.54</version>
 		</dependency>
-		<!-- jstl for jsp -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -59,10 +88,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -75,40 +100,18 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-jpa</artifactId>
-			<version>2.5.6</version>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>jakarta.persistence</groupId>
-			<artifactId>jakarta.persistence-api</artifactId>
-			<version>2.2.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-api</artifactId>
-			<version>3.141.59</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.8.1</version>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -124,17 +127,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>4.0.0</version>
-            <scope>test</scope>
-        </dependency>
-		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-junit-jupiter</artifactId>
 			<version>4.0.0</version>
@@ -144,26 +136,22 @@
 
 	<reporting>
 		<plugins>
-			<!--            Plugin para mostrar los resultados de los tests unitarios en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>3.0.0-M5</version>
 			</plugin>
-			<!--            Plugin para mostrar la documentación javadoc en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.3.0</version>
 				<configuration>
-					<doclint>none</doclint>  <!-- Turnoff all checks -->
+					<doclint>none</doclint>
 				</configuration>
 			</plugin>
-			<!--            Plugin JaCoCo para mostrar el reporte de cobertura en el maven site -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -172,8 +160,6 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<!--            https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html-->
-			<!--            Plugin Checkstyle: https://checkstyle.org/-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -186,8 +172,6 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<!--            Plugin PMD-->
-			<!--            http://maven.apache.org/plugins/maven-pmd-plugin/index.html-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -203,9 +187,7 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>true</includeTests>
-					<!--                    minimumTokens vale 100 por defecto-->
-					<minimumTokens>20</minimumTokens>
+					<includeTests>false</includeTests>
 					<includes>
 						<include>**/*.java</include>
 					</includes>
@@ -213,11 +195,6 @@
 						<compileSourceRoot>${basedir}/src/main/java</compileSourceRoot>
 					</compileSourceRoots>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.4.2.2</version>
 			</plugin>
 		</plugins>
 	</reporting>
@@ -227,6 +204,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>2.5.6</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -238,14 +216,11 @@
 				<artifactId>maven-site-plugin</artifactId>
 				<version>3.9.1</version>
 			</plugin>
-			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 			</plugin>
-			-->
-			<!--            https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -313,8 +288,7 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>true</includeTests>
-					<minimumTokens>20</minimumTokens>
+					<includeTests>false</includeTests>
 					<includes>
 						<include>**/*.java</include>
 					</includes>
