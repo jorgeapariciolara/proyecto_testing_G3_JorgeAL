@@ -132,12 +132,12 @@
 
 	<reporting>
 		<plugins>
-			<!--            Plugin para mostrar los resultados de los tests unitarios en el maven site
+			<!--            Plugin para mostrar los resultados de los tests unitarios en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>3.0.0-M5</version>
-			</plugin>-->
+			</plugin>
 			<!--            Plugin para mostrar la documentación javadoc en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
