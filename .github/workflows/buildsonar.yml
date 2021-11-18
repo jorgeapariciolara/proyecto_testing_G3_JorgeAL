@@ -30,18 +30,13 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
+      - name: Maven verify
+        run: mvn -B verify -f pom.xml
 
+      - name: Maven site
+        run: mvn -B site -f pom.xml
 
-      - name: Clean
-        run: mvn -B clean
-
-      - name: Verify
-        run: mvn -B verify
-
-      - name: Site
-        run: mvn -B site
-
-      - name: Sonar
+      - name: SonarCloud analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
