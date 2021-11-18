@@ -16,11 +16,10 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     private ManufacturerRepository manufacturerRepository;
     private ProductRepository productRepository;
 
-    public ManufacturerServiceImpl(ManufacturerRepository manufacturerRepository, ProductRepository productRepository){
+    public ManufacturerServiceImpl(ManufacturerRepository manufacturerRepository){
         this.manufacturerRepository = manufacturerRepository;
         this.productRepository = productRepository;
     }
-
 
     @Override
     public List<Manufacturer> findAll() {
@@ -43,18 +42,27 @@ public class ManufacturerServiceImpl implements ManufacturerService {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return manufacturerRepository.existsById(id);
+    }
+
+    @Override
     public Manufacturer save(Manufacturer manufacturer) {
         if(manufacturer == null)
             return null;
 
+        for (Product product : manufacturer.getProducts())
+            product.setManufacturer(manufacturer);
+
+        if(manufacturer.getId() == null) // crear un nuevo fabricante
+            return manufacturerRepository.save(manufacturer);
+
+        // editar un fabricante existente
         Optional<Manufacturer> manufacturerOptional = this.manufacturerRepository.findById(manufacturer.getId());
         if(manufacturerOptional.isEmpty())
             return null;
 
         Manufacturer manufacturerDB = manufacturerOptional.get();
-
-        for (Product product : manufacturer.getProducts())
-            product.setManufacturer(manufacturer);
 
         List<Product> products = new ArrayList<>(manufacturer.getProducts());
         for (Product productDB : manufacturerDB.getProducts()){ // productos originales
@@ -71,7 +79,7 @@ public class ManufacturerServiceImpl implements ManufacturerService {
         }
         products.addAll(manufacturerDB.getProducts());
 
-        if (products.size() > 0)
+        if (!products.isEmpty())
             productRepository.saveAll(products);
 
         return manufacturerRepository.save(manufacturer);

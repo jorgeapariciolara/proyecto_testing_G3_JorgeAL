@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductsTest {
 
@@ -36,7 +38,6 @@ public class ProductsTest {
     void checkTable() {
         assertEquals(1,
                 driver.findElements(By.tagName("table")).size());
-
     }
 
     @Test
@@ -44,5 +45,14 @@ public class ProductsTest {
         // css selector para recuperar columna nombre de una fila:
         // table tbody tr:nth-child(2) td
         // table tbody tr:nth-child(2) td:first-child
+    }
+
+    @Test
+    void botonVolver() {
+        WebElement botonVolver = driver.findElement(By.cssSelector("btn btn-info"));
+        Actions action = new Actions(driver);
+        action.doubleClick(botonVolver).perform();
+        assertEquals(1,
+                driver.findElements(By.tagName("table")).size());
     }
 }

@@ -8,6 +8,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(JUnitPlatform.class)
 @SelectPackages("com.example.proyectotesting")
-public class SuiteClass {
+public class  SuiteClass {
 
 }

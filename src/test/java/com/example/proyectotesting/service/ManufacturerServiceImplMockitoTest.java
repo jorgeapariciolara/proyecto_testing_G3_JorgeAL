@@ -1,12 +1,8 @@
 package com.example.proyectotesting.service;
 
-
-
 import com.example.proyectotesting.entities.Direction;
 import com.example.proyectotesting.entities.Manufacturer;
-import com.example.proyectotesting.entities.Product;
 import com.example.proyectotesting.repository.ManufacturerRepository;
-import com.example.proyectotesting.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
