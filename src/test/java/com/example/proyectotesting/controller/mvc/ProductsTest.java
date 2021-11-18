@@ -34,6 +34,7 @@ public class ProductsTest {
         driver.quit();
     }
 
+
     @Test
     void checkTable() {
         assertEquals(1,
