@@ -1,4 +1,4 @@
-package com.example.proyectotesting.controller.mvc;
+package com.example.proyectotesting.selenium;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
