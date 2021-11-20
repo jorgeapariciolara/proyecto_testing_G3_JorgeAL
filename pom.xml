@@ -173,6 +173,7 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.7</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -262,7 +263,6 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<!--
 					<execution>
 						<id>default-check</id>
 						<goals>
@@ -283,7 +283,6 @@
 							</rules>
 						</configuration>
 					</execution>
-					-->
 				</executions>
 			</plugin>
 			<plugin>
