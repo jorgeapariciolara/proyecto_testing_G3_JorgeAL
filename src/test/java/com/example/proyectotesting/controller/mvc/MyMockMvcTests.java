@@ -23,22 +23,20 @@ class MyMockMvcTests {
 
     @Test
     void obtenerListaTest() throws Exception {
+
         mvc.perform(get("/products")) // url a testear: http://localhost:8080/products
                 .andExpect(status().isOk()) // estado HTTP de la respuesta 200
                 .andExpect(model().attributeExists("products")) // comprobar los atributos cargados en el modelo
-                .andExpect(view().name("product-list")) // comprobar el nombre de la vista
+                .andExpect(view().name("product-list")) // comprobar los atributos cargados en el modelo
                 .andExpect( forwardedUrl("/WEB-INF/views/product-list.jsp")); // vista que se mostrará
+
     }
 
     @Test
     void crearProductoTest() throws Exception {
         mvc.perform(
-                post("/products")
-                        .param("name","Producto prueba")
-                        .param("description","Descripción del producto de prueba")
-                        .param("price","159.78")
-                        .param("quantity","15")
-        ).andExpect(status().is3xxRedirection())
+                        post("/products").param("name", "producto prueba")
+                ).andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/products"));
     }
 }
