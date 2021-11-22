@@ -11,12 +11,23 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testeo de los métodos presentes en la clase DirectionRepository del package Repository
+ *
+ * Busco los productos porque no aparecen como en ProyectoTestingAplication, id de los Products del 1 al 5,
+ * sino con id del 9 al 13. También me aseguro de cuáles son los id de los manufacturer: 1 y 3.
+ *                     System.out.println(repository.findById(9L).get());
+ *                     System.out.println(repository.findById(10L).get());
+ *                     System.out.println(repository.findById(11L).get());
+ *                     System.out.println(repository.findById(12L).get());
+ *                     System.out.println(repository.findById(13L).get());
+ */
+
 @DataJpaTest
 class ProductRepositoryTest {
 
     @Autowired
     ProductRepository repository;
-
 
     @DisplayName("Buscar utilizando el id del fabricante")
     @Nested
@@ -24,15 +35,6 @@ class ProductRepositoryTest {
         @DisplayName("Buscar los productos cuando el id del fabricante es conocido")
         @Test
         void findAllByManufacturerIdTest() {
-            /*
-            Busco los productos porque no aparecen como en ProyectoTestingAplication, id de los Products del 1 al 5,
-            sino con id del 9 al 13. También me aseguro de cuáles son los id de los manufacturer: 1 y 3.
-                    System.out.println(repository.findById(9L).get());
-                    System.out.println(repository.findById(10L).get());
-                    System.out.println(repository.findById(11L).get());
-                    System.out.println(repository.findById(12L).get());
-                    System.out.println(repository.findById(13L).get());
-            */
             List<Product> productsAdidas = repository.findAllByManufacturerId(1L);
             List<Product> productsNike = repository.findAllByManufacturerId(3L);
             assertAll(

@@ -8,6 +8,10 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testeo de los métodos presentes en la clase CategoryRepository del package Repository
+ */
+
 @DataJpaTest
 class CategoryRepositoryTest {
 

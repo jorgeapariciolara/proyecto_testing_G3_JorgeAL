@@ -11,13 +11,19 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Testeo de los métodos presentes en la clase DirectionRepository del package Repository
+ *
+ * Saco el repositorio por consola porque no me cuadran los id en los test que hago y veo que tienen asignados los
+ * id 2 y 4:
+ *      System.out.println(repository.findAll());
+ *         [Direction [id=2, street=Calle falsa, postalCode=33010, city=León, country=Spain],
+ *         Direction [id=4, street=Calle verdadera, postalCode=11322, city=Madrid, country=Spain]]
+ */
+
 @DataJpaTest
 public class DirectionRepositoryTest {
-        /*
-        System.out.println(repository.findAll());
-        [Direction [id=2, street=Calle falsa, postalCode=33010, city=León, country=Spain],
-        Direction [id=4, street=Calle verdadera, postalCode=11322, city=Madrid, country=Spain]]
-         */
+
     @Autowired
     DirectionRepository repository;
 

@@ -1,10 +1,7 @@
 package com.example.proyectotesting.service;
 
-
 import com.example.proyectotesting.entities.Direction;
-import com.example.proyectotesting.entities.Manufacturer;
 import com.example.proyectotesting.repository.DirectionRepository;
-import com.example.proyectotesting.repository.ManufacturerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -17,6 +14,10 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+/**
+ * Testeo de los métodos presentes en la clase DirectionServiceImpl del package Service
+ */
 
 public class DirectionServiceImplMockitoTest {
 

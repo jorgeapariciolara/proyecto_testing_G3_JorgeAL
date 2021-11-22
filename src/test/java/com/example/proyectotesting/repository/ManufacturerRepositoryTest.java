@@ -9,6 +9,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 
+/**
+ * Testeo de los métodos presentes en la clase ManufacturerRepository del package Repository
+ */
 @DataJpaTest
 public class ManufacturerRepositoryTest {
 

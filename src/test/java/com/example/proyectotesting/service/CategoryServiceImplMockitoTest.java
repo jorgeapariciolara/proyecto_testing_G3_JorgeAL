@@ -15,6 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testeo de los métodos presentes en la clase CategoryServiceImpl del package Service
+ * "Apaño los test porque no entiendo...¿POR QUÉ NO SE ASIGNAN ID A LAS CATEGORÍAS?"
+ **/
+
 public class CategoryServiceImplMockitoTest {
 
     CategoryRepository repositoryMock;
@@ -125,7 +130,6 @@ public class CategoryServiceImplMockitoTest {
             );
             verifyNoInteractions(repositoryMock);
         }
-
         @DisplayName("OPTIONAL - Buscar una categoría con un id que no existe en la base de datos")
         @Test
         void findNotContainsTest() {
@@ -139,7 +143,6 @@ public class CategoryServiceImplMockitoTest {
             );
             verify(repositoryMock).findById(anyLong());
         }
-
         @DisplayName("Buscar una categoría utilizando el color")
         @Test
         void findByColorTest() {
@@ -159,22 +162,17 @@ public class CategoryServiceImplMockitoTest {
             Optional<Category> categoryFour = service.findOne("brown");
             assertAll(
                     () -> assertNotNull(categoryOne),
-                    // () -> assertEquals(1L, categoryOne.getId()),
                     () -> assertEquals("Libros", categoryOne.get().getName()),
                     () -> assertEquals("black", categoryOne.get().getColor()),
                     () -> assertNotNull(categoryTwo),
-                    // () -> assertEquals(2L, categoryTwo.getId()),
                     () -> assertEquals("Computación", categoryTwo.get().getName()),
                     () -> assertEquals("blue", categoryTwo.get().getColor()),
                     () -> assertNotNull(categoryThree),
-                    // () -> assertEquals(3L, categoryThree.getId()),
                     () -> assertEquals("Hogar", categoryThree.get().getName()),
                     () -> assertEquals("white", categoryThree.get().getColor()),
                     () -> assertNotNull(categoryFour),
-                    // () -> assertEquals(4L, categoryFour.getId()),
                     () -> assertEquals("Moda", categoryFour.get().getName()),
                     () -> assertEquals("brown", categoryFour.get().getColor())
-                    // ¿POR QUÉ NO SE ASIGNAN ID A LAS CATEGORÍAS?
             );
             verify(repositoryMock).findByColor("black");
             verify(repositoryMock).findByColor("blue");
@@ -216,22 +214,17 @@ public class CategoryServiceImplMockitoTest {
             Category categoryFour = service.save(category4);
             assertAll(
                     () -> assertNotNull(categoryOne),
-                    // () -> assertEquals(1L, categoryOne.getId()),
                     () -> assertEquals("Libros", categoryOne.getName()),
                     () -> assertEquals("black", categoryOne.getColor()),
                     () -> assertNotNull(categoryTwo),
-                    // () -> assertEquals(2L, categoryTwo.getId()),
                     () -> assertEquals("Computación", categoryTwo.getName()),
                     () -> assertEquals("blue", categoryTwo.getColor()),
                     () -> assertNotNull(categoryThree),
-                    // () -> assertEquals(3L, categoryThree.getId()),
                     () -> assertEquals("Hogar", categoryThree.getName()),
                     () -> assertEquals("white", categoryThree.getColor()),
                     () -> assertNotNull(categoryFour),
-                    // () -> assertEquals(4L, categoryFour.getId()),
                     () -> assertEquals("Moda", categoryFour.getName()),
                     () -> assertEquals("brown", categoryFour.getColor())
-                    // ¿POR QUÉ NO SE ASIGNAN ID A LAS CATEGORÍAS?
             );
             verify(repositoryMock).save(category1);
             verify(repositoryMock).save(category2);
@@ -286,5 +279,4 @@ public class CategoryServiceImplMockitoTest {
             verify(repositoryMock,times(2)).deleteAll();
         }
     }
-
 }

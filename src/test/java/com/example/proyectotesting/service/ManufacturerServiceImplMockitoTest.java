@@ -16,6 +16,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * Testeo de los métodos presentes en la clase ManufacturerServiceImpl del package Service
+ */
 public class ManufacturerServiceImplMockitoTest {
 
     ManufacturerRepository repositoryMock;
@@ -130,7 +133,6 @@ public class ManufacturerServiceImplMockitoTest {
             );
             verify(repositoryMock).findById(anyLong());
         }
-
         @DisplayName("Buscar un fabricante por el año de su fundación")
         @Test
         void findByYearTest() {
@@ -175,7 +177,6 @@ public class ManufacturerServiceImplMockitoTest {
             verify(repositoryMock).findByYear(1977);
             verify(repositoryMock).findByYear(1997);
         }
-
         @DisplayName("Buscar un fabricante por el país")
         @Test
         void findByCountryTest() {
