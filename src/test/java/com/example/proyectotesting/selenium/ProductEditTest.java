@@ -14,6 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProductEditTest extends BaseTest {
 
+    //private static final String URL="http://testing-alansastre.herokuapp.com/products/10/edit";
     private static final String URL="http://localhost:8080/products/10/edit";
 
     @Test
@@ -51,6 +52,7 @@ public class ProductEditTest extends BaseTest {
         WebElement saveButton = driver.findElement(By.xpath("//*[@id=\"product\"]/div[7]/button"));
         saveButton.submit();
 
+        //String newURL = "http://testing-alansastre.herokuapp.com/products";
         String newURL = "http://localhost:8080/products";
         driver.get(newURL);
         String newTitle = driver.getTitle();
@@ -118,6 +120,7 @@ public class ProductEditTest extends BaseTest {
         WebElement saveButton = driver.findElement(By.xpath("//*[@id=\"product\"]/div[7]/button"));
         saveButton.submit();
 
+        //String newURL = "http://testing-alansastre.herokuapp.com/products";
         String newURL = "http://localhost:8080/products";
         driver.get(newURL);
         String newTitle = driver.getTitle();

@@ -16,27 +16,37 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-class MyMockMvcTests {
+class ProductControllerMockMvcTest {
 
     @Autowired
     MockMvc mvc;
 
     @Test
     void obtenerListaTest() throws Exception {
-
         mvc.perform(get("/products")) // url a testear: http://localhost:8080/products
                 .andExpect(status().isOk()) // estado HTTP de la respuesta 200
                 .andExpect(model().attributeExists("products")) // comprobar los atributos cargados en el modelo
                 .andExpect(view().name("product-list")) // comprobar los atributos cargados en el modelo
                 .andExpect( forwardedUrl("/WEB-INF/views/product-list.jsp")); // vista que se mostrará
-
     }
 
     @Test
     void crearProductoTest() throws Exception {
-        mvc.perform(
-                        post("/products").param("name", "producto prueba")
-                ).andExpect(status().is3xxRedirection())
+        mvc.perform(post("/products").param("name", "producto prueba"))
+                .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/products"));
+    }
+
+    @Test
+    void viewProductNotFoundTest() throws Exception {
+        mvc.perform(get("/products/1/view"))
+                .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
+    void viewProductOkTest() throws Exception {
+        mvc.perform(get("/products/11/view"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("product-view"));
     }
 }
