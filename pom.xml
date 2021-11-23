@@ -14,14 +14,12 @@
 	<name>proyecto-testing-G3-JorgeAL</name>
 	<description>Proyecto final curso</description>
 	<url>https://www.awesomeapp.org/</url>
-
 	<developers>
 		<developer>
 			<name>jorgeaparicio</name>
 			<email>jorgeaparicio79@gmail.com</email>
 		</developer>
 	</developers>
-
 	<contributors>
 		<contributor>
 			<name>alansastre</name>
@@ -55,26 +53,23 @@
 			<name>Francisco</name>
 		</contributor>
 	</contributors>
-
 	<organization>
 		<name>FUNDACIÓN ADECCO - UST</name>
 		<url>https://example.com</url>
 	</organization>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<sonar.organization>jorgeapariciolara</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.junit.reportsPath>target/surefire-reports/*.xml</sonar.junit.reportsPath>
 		<sonar.java.checkstyle.reportPaths>target/checkstyle-result.xml</sonar.java.checkstyle.reportPaths>
 		<sonar.java.pmd.reportPaths>target/pmd.xml</sonar.java.pmd.reportPaths>
 		<sonar.java.spotbugs.reportPaths>target/spotbugsXml.xml</sonar.java.spotbugs.reportPaths>
+		<sonar.organization>jorgeapariciolara</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -114,12 +109,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-runner</artifactId>
 			<version>1.8.0-M1</version>
@@ -142,12 +131,12 @@
 			<artifactId>selenium-java</artifactId>
 			<version>3.141.59</version>
 		</dependency>
-        <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>5.0.3</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.0.3</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
@@ -155,7 +144,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<reporting>
 		<plugins>
 			<plugin>
@@ -174,7 +162,6 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.7</version>
 				<reportSets>
 					<reportSet>
 						<reports>
@@ -211,7 +198,6 @@
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
 					<includeTests>false</includeTests>
-					<minimumTokens>20</minimumTokens>
 					<includes>
 						<include>**/*.java</include>
 					</includes>
@@ -232,14 +218,8 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.4.2.2</version>
-			</plugin>
 		</plugins>
 	</reporting>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -284,12 +264,15 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<!--
+
 					<execution>
 						<id>default-check</id>
 						<goals>
 							<goal>check</goal>
 						</goals>
+					</execution>
+
+					<!--
 						<configuration>
 							<rules>
 								<rule>
@@ -304,7 +287,6 @@
 								</rule>
 							</rules>
 						</configuration>
-					</execution>
 					-->
 				</executions>
 			</plugin>
