@@ -221,7 +221,7 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>false</includeTests>
+					<includeTests>true</includeTests>
 					<!-- <minimumTokens>20</minimumTokens> -->
 					<includes>
 						<include>**/*.java</include>
@@ -337,7 +337,7 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>false</includeTests>
+					<includeTests>true</includeTests>
 					<!-- <minimumTokens>20</minimumTokens> -->
 					<includes>
 						<include>**/*.java</include>
