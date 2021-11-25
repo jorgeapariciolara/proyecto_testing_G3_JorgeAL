@@ -251,10 +251,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.5.6</version>
 			</plugin>
 			<plugin>
@@ -290,7 +286,6 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
-					<!--
 					<execution>
 						<id>default-check</id>
 						<goals>
@@ -311,7 +306,6 @@
 							</rules>
 						</configuration>
 					</execution>
-					-->
 				</executions>
 			</plugin>
 			<plugin>
@@ -341,8 +335,8 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>true</includeTests>
-					<minimumTokens>20</minimumTokens>
+					<includeTests>false</includeTests>
+					<!-- <minimumTokens>20</minimumTokens> -->
 					<includes>
 						<include>**/*.java</include>
 					</includes>
