@@ -190,29 +190,25 @@
 			<version>4.0.0</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<reporting>
 		<plugins>
-			<!--            Plugin para mostrar los resultados de los tests unitarios en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>3.0.0-M5</version>
 			</plugin>
 
-			<!--            Plugin para mostrar la documentación javadoc en el maven site-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.3.0</version>
 				<configuration>
-					<doclint>none</doclint>  <!-- Turnoff all checks -->
+					<doclint>none</doclint>
 				</configuration>
 			</plugin>
 
-			<!--            Plugin JaCoCo para mostrar el reporte de cobertura en el maven site -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -226,8 +222,6 @@
 				</reportSets>
 			</plugin>
 
-			<!--            https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html-->
-			<!--            Plugin Checkstyle: https://checkstyle.org/-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
@@ -241,8 +235,6 @@
 				</reportSets>
 			</plugin>
 
-			<!--            Plugin PMD-->
-			<!--            http://maven.apache.org/plugins/maven-pmd-plugin/index.html-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
@@ -258,9 +250,8 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>false</includeTests>
-							<!--   minimumTokens vale 100 por defecto  -->
-					<!-- <minimumTokens>20</minimumTokens>  -->
+					<includeTests>true</includeTests>
+					<!-- <minimumTokens>20</minimumTokens> -->
 					<includes>
 						<include>**/*.java</include>
 					</includes>
@@ -271,9 +262,15 @@
 			</plugin>
 			<!--
 			<plugin>
-				<groupId>com.github.spotbugs</groupId>
-				<artifactId>spotbugs-maven-plugin</artifactId>
-				<version>4.4.2.2</version>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 			-->
 		</plugins>
@@ -281,14 +278,12 @@
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>2.5.6</version>
 			</plugin>
 
-			<!--            Actualizamos la version de maven-compiler-plugin-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -307,7 +302,6 @@
 				<version>3.0.0-M5</version>
 			</plugin>
 
-			<!--            https://www.eclemma.org/jacoco/trunk/doc/maven.html -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -326,6 +320,7 @@
 							<goal>report</goal>
 						</goals>
 					</execution>
+					<!--
 					<execution>
 						<id>default-check</id>
 						<goals>
@@ -339,13 +334,14 @@
 										<limit>
 											<counter>COMPLEXITY</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>0.30</minimum>
+											<minimum>0.10</minimum>
 										</limit>
 									</limits>
 								</rule>
 							</rules>
 						</configuration>
 					</execution>
+					-->
 				</executions>
 			</plugin>
 
@@ -376,8 +372,8 @@
 					<targetJdk>17</targetJdk>
 					<printFailingErrors>true</printFailingErrors>
 					<failOnViolation>false</failOnViolation>
-					<includeTests>false</includeTests>
-					<!-- <minimumTokens>20</minimumTokens>  -->
+					<includeTests>true</includeTests>
+					<!-- <minimumTokens>20</minimumTokens> -->
 					<includes>
 						<include>**/*.java</include>
 					</includes>
@@ -386,7 +382,6 @@
 					</compileSourceRoots>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>
